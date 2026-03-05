@@ -1,7 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { Search, Home, ArrowLeft } from "lucide-react";
+import { Search, Home } from "lucide-react";
+import BackButton from "@/components/ui/BackButton";
 
 export default function NotFound() {
   return (
@@ -30,13 +29,7 @@ export default function NotFound() {
           <Home className="h-4 w-4" />
           トップへ戻る
         </Link>
-        <button
-          onClick={() => history.back()}
-          className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-navy hover:bg-gray-50 transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          前のページ
-        </button>
+        <BackButton />
       </div>
     </div>
   );

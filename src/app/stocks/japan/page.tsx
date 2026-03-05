@@ -43,6 +43,7 @@ const mockStocks: Stock[] = [
   { code: "6988", name: "日東電工", price: 8_765.0, change: -123.0, changePercent: -1.38, volume: 2_123_000 },
   { code: "4502", name: "武田薬品工業", price: 4_123.0, change: 34.0, changePercent: 0.83, volume: 6_789_000 },
   { code: "7751", name: "キヤノン", price: 5_012.0, change: -67.0, changePercent: -1.32, volume: 3_987_000 },
+  { code: "2801", name: "キッコーマン", price: 1_876.0, change: 12.0, changePercent: 0.64, volume: 2_876_000 },
 ];
 
 type TabKey = "all" | "up" | "down" | "volume";
