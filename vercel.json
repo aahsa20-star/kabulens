@@ -3,6 +3,7 @@
     { "path": "/api/cron/fetch-news", "schedule": "*/30 * * * *" },
     { "path": "/api/cron/summarize-news", "schedule": "5,35 * * * *" },
     { "path": "/api/cron/morning-report", "schedule": "50 21 * * *" },
-    { "path": "/api/cron/fetch-earnings", "schedule": "0 9 * * 1-5" }
+    { "path": "/api/cron/fetch-earnings", "schedule": "0 9 * * 1-5" },
+    { "path": "/api/cron/update-trending", "schedule": "0 * * * *" }
   ]
 }

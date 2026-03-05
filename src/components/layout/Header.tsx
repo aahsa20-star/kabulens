@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -8,24 +8,42 @@ import {
   Menu,
   X,
   ScanLine,
+  ChevronDown,
 } from "lucide-react";
 
-const navLinks = [
+type NavItem = {
+  href: string;
+  label: string;
+  children?: { href: string; label: string }[];
+};
+
+const navLinks: NavItem[] = [
   { href: "/", label: "ホーム" },
   { href: "/stocks", label: "株式" },
-  { href: "/macro", label: "マクロ" },
+  {
+    href: "/macro",
+    label: "マクロ",
+    children: [
+      { href: "/macro", label: "マクロダッシュボード" },
+      { href: "/macro/fed", label: "FRBウォッチャー" },
+      { href: "/macro/boj", label: "日銀ウォッチャー" },
+    ],
+  },
+  { href: "/trending", label: "トレンド" },
   { href: "/news", label: "ニュース" },
-  { href: "/columns", label: "コラム" },
   { href: "/earnings", label: "決算" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const submenuRef = useRef<HTMLDivElement>(null);
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
+    setOpenSubmenu(null);
   }, [pathname]);
 
   // Prevent body scroll when mobile menu is open
@@ -39,6 +57,18 @@ export default function Header() {
       document.body.style.overflow = "";
     };
   }, [mobileMenuOpen]);
+
+  // Close submenu on outside click
+  useEffect(() => {
+    if (!openSubmenu) return;
+    function handleClick(e: MouseEvent) {
+      if (submenuRef.current && !submenuRef.current.contains(e.target as Node)) {
+        setOpenSubmenu(null);
+      }
+    }
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [openSubmenu]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200/60">
@@ -58,12 +88,57 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1" ref={submenuRef}>
             {navLinks.map((link) => {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
                   : pathname.startsWith(link.href);
+
+              if (link.children) {
+                return (
+                  <div key={link.href} className="relative">
+                    <button
+                      onClick={() =>
+                        setOpenSubmenu(openSubmenu === link.href ? null : link.href)
+                      }
+                      className={`flex items-center gap-0.5 px-3 py-1.5 text-sm font-medium rounded-[6px] transition-colors ${
+                        isActive
+                          ? "text-accent bg-accent/8"
+                          : "text-gray-600 hover:text-navy hover:bg-gray-100"
+                      }`}
+                    >
+                      {link.label}
+                      <ChevronDown
+                        className={`h-3.5 w-3.5 transition-transform ${
+                          openSubmenu === link.href ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {openSubmenu === link.href && (
+                      <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50">
+                        {link.children.map((child) => {
+                          const childActive = pathname === child.href;
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className={`block px-4 py-2 text-sm transition-colors ${
+                                childActive
+                                  ? "text-accent bg-accent/5 font-medium"
+                                  : "text-gray-600 hover:text-navy hover:bg-gray-50"
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={link.href}
@@ -122,6 +197,48 @@ export default function Header() {
                 link.href === "/"
                   ? pathname === "/"
                   : pathname.startsWith(link.href);
+
+              if (link.children) {
+                return (
+                  <div key={link.href}>
+                    <button
+                      onClick={() =>
+                        setOpenSubmenu(openSubmenu === link.href ? null : link.href)
+                      }
+                      className={`w-full flex items-center justify-between px-4 py-3 text-base font-medium rounded-[8px] transition-colors ${
+                        isActive
+                          ? "text-accent bg-accent/8"
+                          : "text-gray-700 hover:bg-gray-50"
+                      }`}
+                    >
+                      {link.label}
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          openSubmenu === link.href ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {openSubmenu === link.href && (
+                      <div className="ml-4 mt-1 space-y-1">
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className={`block px-4 py-2.5 text-sm rounded-[6px] transition-colors ${
+                              pathname === child.href
+                                ? "text-accent bg-accent/5 font-medium"
+                                : "text-gray-600 hover:bg-gray-50"
+                            }`}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={link.href}

@@ -1,9 +1,11 @@
+import Link from "next/link";
 import {
   TrendingUp,
   TrendingDown,
   ArrowRight,
   Landmark,
   CalendarDays,
+  ChevronRight,
 } from "lucide-react";
 import {
   StockHeatmap,
@@ -173,6 +175,12 @@ export default function MacroPage() {
                 2026年3月17-18日
               </span>
             </div>
+            <Link
+              href="/macro/fed"
+              className="flex items-center justify-center gap-1 mt-4 pt-3 border-t border-gray-100 text-sm font-medium text-accent hover:text-accent-light transition-colors"
+            >
+              詳しく見る <ChevronRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
 
@@ -206,6 +214,12 @@ export default function MacroPage() {
                 2026年3月13-14日
               </span>
             </div>
+            <Link
+              href="/macro/boj"
+              className="flex items-center justify-center gap-1 mt-4 pt-3 border-t border-gray-100 text-sm font-medium text-accent hover:text-accent-light transition-colors"
+            >
+              詳しく見る <ChevronRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

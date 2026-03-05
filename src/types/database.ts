@@ -139,6 +139,25 @@ export type Database = {
         };
         Update: Partial<Database["public"]["Tables"]["authors"]["Insert"]>;
       };
+      trending_cache: {
+        Row: {
+          id: string;
+          type: string;
+          keyword: string;
+          score: number;
+          related_tickers: string[] | null;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          type: string;
+          keyword: string;
+          score: number;
+          related_tickers?: string[] | null;
+          updated_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["trending_cache"]["Insert"]>;
+      };
       newsletter_subs: {
         Row: {
           id: string;

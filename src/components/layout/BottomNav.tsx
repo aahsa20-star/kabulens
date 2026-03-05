@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, TrendingUp, Globe, Newspaper, Users } from "lucide-react";
+import { Home, TrendingUp, Globe, Flame, Newspaper, BarChart3 } from "lucide-react";
 
 const tabs = [
   { href: "/", label: "ホーム", icon: Home },
   { href: "/stocks", label: "株式", icon: TrendingUp },
+  { href: "/trending", label: "トレンド", icon: Flame },
   { href: "/macro", label: "マクロ", icon: Globe },
   { href: "/news", label: "ニュース", icon: Newspaper },
-  { href: "/columns", label: "コラム", icon: Users },
+  { href: "/earnings", label: "決算", icon: BarChart3 },
 ];
 
 export default function BottomNav() {
@@ -17,7 +18,7 @@ export default function BottomNav() {
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200/60">
-      <div className="flex items-center justify-around h-14 px-2">
+      <div className="flex items-center justify-around h-14 px-1">
         {tabs.map((tab) => {
           const isActive =
             tab.href === "/"
