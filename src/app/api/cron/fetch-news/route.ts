@@ -4,20 +4,48 @@ import { createServerClient } from "@/lib/supabase";
 interface RSSSource {
   url: string;
   source: string;
+  lang: "ja" | "en";
+  priority: number;
 }
 
 const RSS_SOURCES: RSSSource[] = [
+  // 日本語・日本市場（最優先）
   {
-    url: "https://feeds.reuters.com/reuters/JPBusinessNews",
-    source: "ロイター",
+    url: "https://www.jpx.co.jp/news/1020/index.xml",
+    source: "JPX",
+    lang: "ja",
+    priority: 1,
   },
   {
     url: "https://www.boj.or.jp/rss/news.xml",
-    source: "日銀",
+    source: "日本銀行",
+    lang: "ja",
+    priority: 1,
   },
+  {
+    url: "https://feeds.reuters.com/reuters/JPBusinessNews",
+    source: "ロイター日本語",
+    lang: "ja",
+    priority: 1,
+  },
+  {
+    url: "https://www.dir.co.jp/rss/report.rdf",
+    source: "大和総研",
+    lang: "ja",
+    priority: 2,
+  },
+  {
+    url: "https://www.fsa.go.jp/news/rss/news.xml",
+    source: "金融庁",
+    lang: "ja",
+    priority: 2,
+  },
+  // 海外（マクロのみ・日本市場への影響が大きいものに限定）
   {
     url: "https://www.federalreserve.gov/feeds/press_all.xml",
     source: "FRB",
+    lang: "en",
+    priority: 3,
   },
 ];
 
@@ -35,24 +63,29 @@ function parseRSSItems(xml: string): ParsedItem[] {
   while ((itemMatch = itemRegex.exec(xml)) !== null) {
     const itemContent = itemMatch[1];
 
-    // Extract title (handle CDATA sections)
     const titleMatch = itemContent.match(
       /<title>\s*(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?\s*<\/title>/i
     );
-    // Extract link
     const linkMatch = itemContent.match(
       /<link>\s*(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?\s*<\/link>/i
     );
-    // Extract pubDate
     const pubDateMatch = itemContent.match(
       /<pubDate>\s*(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?\s*<\/pubDate>/i
+    );
+    // Also try dc:date for RDF feeds (e.g., 大和総研)
+    const dcDateMatch = itemContent.match(
+      /<dc:date>\s*(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?\s*<\/dc:date>/i
     );
 
     if (titleMatch && linkMatch) {
       items.push({
         title: titleMatch[1].trim(),
         link: linkMatch[1].trim(),
-        pubDate: pubDateMatch ? pubDateMatch[1].trim() : new Date().toISOString(),
+        pubDate: pubDateMatch
+          ? pubDateMatch[1].trim()
+          : dcDateMatch
+            ? dcDateMatch[1].trim()
+            : new Date().toISOString(),
       });
     }
   }
@@ -62,7 +95,6 @@ function parseRSSItems(xml: string): ParsedItem[] {
 
 export async function GET(request: Request) {
   try {
-    // Verify CRON_SECRET
     const authHeader = request.headers.get("authorization");
     if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -72,7 +104,12 @@ export async function GET(request: Request) {
     let totalNewArticles = 0;
     const errors: string[] = [];
 
-    for (const source of RSS_SOURCES) {
+    // Sort sources by priority (lower = higher priority)
+    const sortedSources = [...RSS_SOURCES].sort(
+      (a, b) => a.priority - b.priority
+    );
+
+    for (const source of sortedSources) {
       try {
         const response = await fetch(source.url, {
           headers: { "User-Agent": "KabuLens/1.0 RSS Fetcher" },
@@ -87,7 +124,6 @@ export async function GET(request: Request) {
         const items = parseRSSItems(xml);
 
         for (const item of items) {
-          // Check if URL already exists (skip duplicates)
           const { data: existing } = await supabase
             .from("news_articles")
             .select("id")
@@ -95,11 +131,8 @@ export async function GET(request: Request) {
             .limit(1)
             .single();
 
-          if (existing) {
-            continue;
-          }
+          if (existing) continue;
 
-          // Insert new article
           const { error: insertError } = await supabase
             .from("news_articles")
             .insert({
@@ -110,9 +143,7 @@ export async function GET(request: Request) {
               is_validated: false,
             });
 
-          if (!insertError) {
-            totalNewArticles++;
-          }
+          if (!insertError) totalNewArticles++;
         }
       } catch (sourceError) {
         const message =

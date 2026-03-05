@@ -6,6 +6,9 @@ import {
   HotLists,
 } from "@/components/tradingview/ClientWidgets";
 import NewsSection from "@/components/home/NewsSection";
+
+// Revalidate every 5 minutes for fresh news data
+export const revalidate = 300;
 import MacroSummary from "@/components/home/MacroSummary";
 import EarningsCalendarPreview from "@/components/home/EarningsCalendarPreview";
 import ColumnPreview from "@/components/home/ColumnPreview";
