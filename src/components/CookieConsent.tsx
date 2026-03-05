@@ -21,10 +21,15 @@ export default function CookieConsent() {
 
   const handleAcceptAll = () => {
     localStorage.setItem("cookie_consent", "all");
+    // GA consent を更新してデータ送信を開始
+    const gaId = process.env.NEXT_PUBLIC_GA_ID;
+    if (gaId && window.gtag) {
+      window.gtag("consent", "update", { analytics_storage: "granted" });
+      window.gtag("config", gaId);
+    }
     setAnimateIn(false);
-    // Reload after animation completes to activate GA
     setTimeout(() => {
-      window.location.reload();
+      setVisible(false);
     }, 300);
   };
 
