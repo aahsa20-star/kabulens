@@ -51,9 +51,21 @@ export async function POST(request: Request) {
       );
     }
 
+    // Send confirmation email (fire and forget)
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kabulens.jp";
+      await fetch(`${baseUrl}/api/newsletter/send-confirmation`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: trimmedEmail }),
+      });
+    } catch {
+      // Don't block registration if confirmation email fails
+    }
+
     return NextResponse.json({
       success: true,
-      message: "ニュースレターに登録しました。",
+      message: "確認メールを送信しました。メールをご確認ください。",
     });
   } catch (error) {
     // Handle JSON parse errors

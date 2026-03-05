@@ -1,6 +1,7 @@
 {
   "crons": [
     { "path": "/api/cron/fetch-news", "schedule": "*/30 * * * *" },
-    { "path": "/api/cron/summarize-news", "schedule": "5,35 * * * *" }
+    { "path": "/api/cron/summarize-news", "schedule": "5,35 * * * *" },
+    { "path": "/api/cron/morning-report", "schedule": "50 21 * * *" }
   ]
 }

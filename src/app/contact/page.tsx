@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Send, CheckCircle, MessageSquare } from "lucide-react";
+import { Mail, Send, CheckCircle, MessageSquare, Loader2 } from "lucide-react";
 
 const subjectOptions = [
   "サービスについて",
@@ -15,12 +15,33 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState<string>(subjectOptions[0]);
   const [message, setMessage] = useState("");
+  const [hp, setHp] = useState("");
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !message) return;
-    setSubmitted(true);
+    if (!name || !email || !message || loading) return;
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message, _hp: hp }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error || "送信に失敗しました。");
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError("通信エラーが発生しました。もう一度お試しください。");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -131,13 +152,35 @@ export default function ContactPage() {
                   />
                 </div>
 
+                {/* Honeypot */}
+                <div className="hidden" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="_hp"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={hp}
+                    onChange={(e) => setHp(e.target.value)}
+                  />
+                </div>
+
+                {/* Error */}
+                {error && (
+                  <p className="text-sm text-red-500">{error}</p>
+                )}
+
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-accent-light text-white text-sm font-semibold rounded-lg transition-colors"
+                  disabled={loading}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-accent-light text-white text-sm font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send className="h-4 w-4" />
-                  送信する
+                  {loading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
+                  {loading ? "送信中..." : "送信する"}
                 </button>
               </form>
             )}

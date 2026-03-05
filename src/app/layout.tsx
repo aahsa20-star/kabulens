@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BottomNav from "@/components/layout/BottomNav";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CookieConsent from "@/components/CookieConsent";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -67,10 +69,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${dmMono.variable} ${notoSansJP.variable} font-sans antialiased bg-offwhite text-navy`}
       >
+        <GoogleAnalytics />
         <Header />
         <main className="min-h-screen pb-20 md:pb-0">{children}</main>
         <Footer />
         <BottomNav />
+        <CookieConsent />
       </body>
     </html>
   );
