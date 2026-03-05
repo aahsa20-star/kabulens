@@ -29,6 +29,20 @@ const mockStocks: Stock[] = [
   { code: "8306", name: "三菱UFJフィナンシャル・グループ", price: 1_654.5, change: 18.5, changePercent: 1.13, volume: 32_456_000 },
   { code: "7267", name: "本田技研工業", price: 1_543.0, change: -21.0, changePercent: -1.34, volume: 11_234_000 },
   { code: "8766", name: "東京海上ホールディングス", price: 5_678.0, change: 89.0, changePercent: 1.59, volume: 4_321_000 },
+  { code: "6902", name: "デンソー", price: 2_456.0, change: 34.0, changePercent: 1.40, volume: 5_432_000 },
+  { code: "4519", name: "中外製薬", price: 6_123.0, change: -78.0, changePercent: -1.26, volume: 3_210_000 },
+  { code: "6594", name: "ニデック", price: 4_567.0, change: 123.0, changePercent: 2.77, volume: 6_543_000 },
+  { code: "3382", name: "セブン＆アイ・HD", price: 2_134.5, change: -15.5, changePercent: -0.72, volume: 8_234_000 },
+  { code: "2914", name: "JT", price: 4_312.0, change: 56.0, changePercent: 1.32, volume: 9_876_000 },
+  { code: "4568", name: "第一三共", price: 5_876.0, change: 198.0, changePercent: 3.49, volume: 7_654_000 },
+  { code: "6273", name: "SMC", price: 72_450.0, change: -980.0, changePercent: -1.33, volume: 876_000 },
+  { code: "9432", name: "日本電信電話", price: 178.5, change: 2.5, changePercent: 1.42, volume: 45_678_000 },
+  { code: "7741", name: "HOYA", price: 18_920.0, change: 420.0, changePercent: 2.27, volume: 2_345_000 },
+  { code: "4661", name: "オリエンタルランド", price: 3_876.0, change: -45.0, changePercent: -1.15, volume: 4_567_000 },
+  { code: "6762", name: "TDK", price: 5_234.0, change: 67.0, changePercent: 1.30, volume: 3_456_000 },
+  { code: "6988", name: "日東電工", price: 8_765.0, change: -123.0, changePercent: -1.38, volume: 2_123_000 },
+  { code: "4502", name: "武田薬品工業", price: 4_123.0, change: 34.0, changePercent: 0.83, volume: 6_789_000 },
+  { code: "7751", name: "キヤノン", price: 5_012.0, change: -67.0, changePercent: -1.32, volume: 3_987_000 },
 ];
 
 type TabKey = "all" | "up" | "down" | "volume";
