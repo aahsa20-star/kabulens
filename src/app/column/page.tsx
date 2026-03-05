@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, Clock, Users, TrendingUp } from "lucide-react";
+import ComingSoonBanner from "@/components/ui/ComingSoonBanner";
 
 export const metadata: Metadata = {
   title: "コラム",
@@ -171,6 +172,8 @@ export default function ColumnListPage() {
         </div>
         <p className="text-sm text-gray-500">信頼できる投資家の声</p>
       </div>
+
+      <ComingSoonBanner />
 
       {/* Featured writers */}
       <section className="mb-12">

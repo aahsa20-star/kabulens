@@ -15,6 +15,7 @@ import {
   ArrowLeft,
   Tag,
 } from "lucide-react";
+import ComingSoonBanner from "@/components/ui/ComingSoonBanner";
 
 type WriterProfile = {
   id: string;
@@ -499,6 +500,8 @@ export default function ColumnDetailPage() {
         <ArrowLeft className="h-4 w-4" />
         コラム一覧に戻る
       </Link>
+
+      <ComingSoonBanner />
 
       <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
         {/* Main content */}
