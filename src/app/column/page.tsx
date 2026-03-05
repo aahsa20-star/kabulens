@@ -4,9 +4,9 @@ import { BookOpen, Clock, Users, TrendingUp } from "lucide-react";
 import ComingSoonBanner from "@/components/ui/ComingSoonBanner";
 
 export const metadata: Metadata = {
-  title: "コラム",
+  title: "コラム（準備中）",
   description:
-    "信頼できる投資家・インフルエンサーによる株式コラム。市場分析、投資戦略、銘柄解説を毎日更新。",
+    "投資家・株YouTuberによる独自コラムを準備中。",
 };
 
 type Writer = {

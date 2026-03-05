@@ -4,7 +4,7 @@ import { ShieldCheck } from "lucide-react";
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
   description:
-    "Kabu Lensのプライバシーポリシー。個人情報の収集、利用目的、安全管理措置について。",
+    "Kabu Lens（株レンズ）の個人情報取り扱い方針。",
 };
 
 const sections = [

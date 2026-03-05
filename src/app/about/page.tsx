@@ -9,9 +9,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "Kabu Lensについて | 免責事項",
   description:
-    "Kabu Lensについて。サービス概要、ミッション、免責事項、お問い合わせ先。",
+    "Kabu Lens（株レンズ）のサービス概要と免責事項。",
 };
 
 export default function AboutPage() {

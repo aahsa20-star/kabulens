@@ -28,11 +28,12 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kabu Lens | 株式市場を、もっとシャープに。",
-    template: "%s | Kabu Lens",
+    default: "Kabu Lens（株レンズ）| 日本株×マクロ 投資家向け金融メディア",
+    template: "%s | Kabu Lens（株レンズ）",
   },
   description:
-    "日本株×マクロ×インフルエンサーコラム。新NISA世代のための金融メディア。美しいUIで市場を鋭く見通す。",
+    "日本株・マクロ経済・決算情報をAIで要約。新NISA世代のための金融メディア。",
+  metadataBase: new URL("https://kabulens.jp"),
   keywords: [
     "日本株",
     "株式投資",
@@ -46,16 +47,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    siteName: "Kabu Lens",
-    title: "Kabu Lens | 株式市場を、もっとシャープに。",
+    siteName: "Kabu Lens（株レンズ）",
+    title: "Kabu Lens（株レンズ）| 日本株×マクロ 投資家向け金融メディア",
     description:
-      "日本株×マクロ×インフルエンサーコラム。新NISA世代のための金融メディア。",
+      "日本株・マクロ経済・決算情報をAIで要約。新NISA世代のための金融メディア。",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Kabu Lens" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kabu Lens | 株式市場を、もっとシャープに。",
+    title: "Kabu Lens（株レンズ）| 日本株×マクロ 投資家向け金融メディア",
     description:
-      "日本株×マクロ×インフルエンサーコラム。新NISA世代のための金融メディア。",
+      "日本株・マクロ経済・決算情報をAIで要約。新NISA世代のための金融メディア。",
+    images: ["/og-image.png"],
   },
 };
 

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "株価ランキング",
   description:
-    "値上がり率、値下がり率、出来高急増、年初来高値・安値など、日本株の各種ランキングを確認できます。",
+    "本日の値上がり・値下がり・出来高ランキング。",
 };
 
 export default function RankingsLayout({
