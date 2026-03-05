@@ -31,3 +31,8 @@ export const AdvancedChart = dynamic(
   () => import("@/components/tradingview/AdvancedChart"),
   { ssr: false }
 );
+
+export const ForexCrossRates = dynamic(
+  () => import("@/components/tradingview/ForexCrossRates"),
+  { ssr: false }
+);

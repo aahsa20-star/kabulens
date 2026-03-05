@@ -37,34 +37,34 @@ export default function MarketOverview() {
         {
           title: "日本株",
           symbols: [
+            { s: "FXOPEN:JP225", d: "日経平均" },
+            { s: "PEPPERSTONE:TOPIX", d: "TOPIX" },
             { s: "TSE:7203", d: "トヨタ" },
             { s: "TSE:6758", d: "ソニーG" },
             { s: "TSE:9984", d: "ソフトバンクG" },
-            { s: "TSE:6861", d: "キーエンス" },
-            { s: "TSE:8306", d: "三菱UFJ" },
             { s: "TSE:8035", d: "東京エレクトロン" },
           ],
           originalTitle: "日本株",
         },
         {
-          title: "主要指数",
+          title: "米国・グローバル",
           symbols: [
-            { s: "TVC:NI225", d: "日経平均" },
             { s: "FRED:SP500", d: "S&P500" },
+            { s: "NASDAQ:NDX", d: "ナスダック100" },
             { s: "TVC:DXY", d: "ドル指数" },
             { s: "FX:USDJPY", d: "ドル円" },
           ],
-          originalTitle: "主要指数",
+          originalTitle: "米国・グローバル",
         },
         {
-          title: "マクロ",
+          title: "債券・コモディティ",
           symbols: [
-            { s: "TVC:JP10Y", d: "日本10年債" },
+            { s: "TVC:JGB10Y", d: "日本10年債" },
             { s: "TVC:US10Y", d: "米10年債" },
             { s: "TVC:GOLD", d: "金" },
-            { s: "TVC:USOIL", d: "原油" },
+            { s: "TVC:USOIL", d: "WTI原油" },
           ],
-          originalTitle: "マクロ",
+          originalTitle: "債券・コモディティ",
         },
       ],
     });

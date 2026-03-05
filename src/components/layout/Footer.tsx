@@ -3,7 +3,7 @@ import { ScanLine, Twitter, Youtube, MessageCircle } from "lucide-react";
 
 const serviceLinks = [
   { href: "/stocks", label: "株式" },
-  { href: "/macro", label: "マクロ" },
+  { href: "/macro", label: "マーケット" },
   { href: "/news", label: "ニュース" },
   { href: "/columns", label: "コラム" },
 ];

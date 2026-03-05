@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "マクロ経済",
+  title: "マーケット概況 | 日経平均・為替・金利をリアルタイムで",
   description:
-    "FRB・日銀・為替・金利のリアルタイム動向をまとめて確認。",
+    "日経平均・TOPIX・ドル円・米国指数・金利をリアルタイムで確認。マーケット全体の動きをひと目で把握。",
 };
 
 export default function MacroLayout({

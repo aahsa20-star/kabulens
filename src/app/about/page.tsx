@@ -34,7 +34,7 @@ export default function AboutPage() {
           </div>
           <div className="bg-white rounded-lg shadow-sm p-6">
             <p className="text-sm text-navy leading-relaxed mb-4">
-              Kabu Lensは、日本株を中心としたマクロ経済・マーケット情報を提供する金融メディアです。
+              Kabu Lensは、日本株を中心としたマーケット情報を提供する金融メディアです。
               新NISA世代の個人投資家に向けて、複雑な市場情報を分かりやすく、美しいUIで提供することを目指しています。
             </p>
             <p className="text-sm text-navy leading-relaxed mb-4">

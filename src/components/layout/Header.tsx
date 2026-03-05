@@ -22,9 +22,9 @@ const navLinks: NavItem[] = [
   { href: "/stocks", label: "株式" },
   {
     href: "/macro",
-    label: "マクロ",
+    label: "マーケット",
     children: [
-      { href: "/macro", label: "マクロダッシュボード" },
+      { href: "/macro", label: "マーケット概況" },
       { href: "/macro/fed", label: "FRBウォッチャー" },
       { href: "/macro/boj", label: "日銀ウォッチャー" },
     ],

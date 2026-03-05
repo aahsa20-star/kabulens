@@ -8,7 +8,7 @@ const tabs = [
   { href: "/", label: "ホーム", icon: Home },
   { href: "/stocks", label: "株式", icon: TrendingUp },
   { href: "/trending", label: "トレンド", icon: Flame },
-  { href: "/macro", label: "マクロ", icon: Globe },
+  { href: "/macro", label: "マーケット", icon: Globe },
   { href: "/news", label: "ニュース", icon: Newspaper },
   { href: "/earnings", label: "決算", icon: BarChart3 },
 ];

@@ -81,7 +81,7 @@ export default async function BojWatcherPage() {
       <nav className="flex items-center gap-1.5 text-xs text-gray-400 mb-6">
         <Link href="/" className="hover:text-accent transition-colors">ホーム</Link>
         <ChevronRight className="h-3 w-3" />
-        <Link href="/macro" className="hover:text-accent transition-colors">マクロ</Link>
+        <Link href="/macro" className="hover:text-accent transition-colors">マーケット</Link>
         <ChevronRight className="h-3 w-3" />
         <span className="text-navy font-medium">日銀ウォッチャー</span>
       </nav>
