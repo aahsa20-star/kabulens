@@ -1,7 +1,8 @@
 "use client";
 
-import { use } from "react";
+import { use, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import {
   ChevronRight,
@@ -14,6 +15,8 @@ import {
   ExternalLink,
   Star,
 } from "lucide-react";
+import { useAuth } from "@/components/auth/AuthProvider";
+import { createClient } from "@/lib/supabase-client";
 
 const AdvancedChart = dynamic(
   () => import("@/components/tradingview/AdvancedChart"),
@@ -195,10 +198,51 @@ export default function StockDetailPage({
   params: Promise<{ ticker: string }>;
 }) {
   const { ticker } = use(params);
+  const router = useRouter();
+  const { user } = useAuth();
   const stock = stockData[ticker] ?? { ...defaultStock, code: ticker };
   const isUp = stock.change >= 0;
   const isKnown = ticker in stockData;
   const relatedNews = getRelatedNews(ticker);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favLoading, setFavLoading] = useState(false);
+
+  const checkFavorite = useCallback(async () => {
+    if (!user) return;
+    const supabase = createClient();
+    const { data } = await supabase
+      .from("watchlists")
+      .select("id")
+      .eq("ticker", ticker)
+      .maybeSingle();
+    setIsFavorite(!!data);
+  }, [user, ticker]);
+
+  useEffect(() => {
+    checkFavorite();
+  }, [checkFavorite]);
+
+  async function toggleFavorite() {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+    setFavLoading(true);
+    const supabase = createClient();
+    if (isFavorite) {
+      await supabase.from("watchlists").delete().eq("ticker", ticker);
+      setIsFavorite(false);
+    } else {
+      await supabase.from("watchlists").insert({
+        user_id: user.id,
+        ticker,
+        company_name: stock.name !== "不明な銘柄" ? stock.name : null,
+      });
+      setIsFavorite(true);
+    }
+    setFavLoading(false);
+  }
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-20 pb-12">
@@ -215,12 +259,27 @@ export default function StockDetailPage({
 
       {/* Stock header */}
       <div className="mb-6">
-        <div className="flex flex-wrap items-baseline gap-3 mb-2">
+        <div className="flex flex-wrap items-center gap-3 mb-2">
           <h1 className="text-2xl font-bold text-navy">{stock.name}</h1>
           <span className="num text-sm text-gray-400">{stock.code}.T</span>
           {isKnown && (
             <span className="text-xs text-gray-400">{stock.nameEn}</span>
           )}
+          <button
+            onClick={toggleFavorite}
+            disabled={favLoading}
+            className={`ml-auto flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+              isFavorite
+                ? "bg-amber-50 text-amber-600 hover:bg-amber-100"
+                : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+            } disabled:opacity-50`}
+            aria-label={isFavorite ? "お気に入りから削除" : "お気に入りに追加"}
+          >
+            <Star
+              className={`h-4 w-4 ${isFavorite ? "fill-amber-500 text-amber-500" : ""}`}
+            />
+            {isFavorite ? "お気に入り済み" : "お気に入り"}
+          </button>
         </div>
 
         <div className="flex flex-wrap items-baseline gap-4">

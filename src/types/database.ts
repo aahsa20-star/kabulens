@@ -158,6 +158,48 @@ export type Database = {
         };
         Update: Partial<Database["public"]["Tables"]["trending_cache"]["Insert"]>;
       };
+      watchlists: {
+        Row: {
+          id: string;
+          user_id: string;
+          ticker: string;
+          company_name: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          ticker: string;
+          company_name?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["watchlists"]["Insert"]>;
+      };
+      portfolios: {
+        Row: {
+          id: string;
+          user_id: string;
+          ticker: string;
+          company_name: string | null;
+          shares: number;
+          average_price: number;
+          purchased_at: string | null;
+          memo: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          ticker: string;
+          company_name?: string | null;
+          shares: number;
+          average_price: number;
+          purchased_at?: string | null;
+          memo?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["portfolios"]["Insert"]>;
+      };
       newsletter_subs: {
         Row: {
           id: string;

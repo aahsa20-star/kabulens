@@ -9,7 +9,10 @@ import {
   X,
   ScanLine,
   ChevronDown,
+  LogIn,
 } from "lucide-react";
+import { useAuth } from "@/components/auth/AuthProvider";
+import UserMenu from "@/components/auth/UserMenu";
 
 type NavItem = {
   href: string;
@@ -36,6 +39,7 @@ const navLinks: NavItem[] = [
 
 export default function Header() {
   const pathname = usePathname();
+  const { user, loading: authLoading } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const submenuRef = useRef<HTMLDivElement>(null);
@@ -170,6 +174,23 @@ export default function Header() {
               </kbd>
             </button>
 
+            {/* Auth */}
+            <div className="hidden md:block">
+              {authLoading ? (
+                <div className="h-8 w-8 rounded-full bg-gray-200 animate-pulse" />
+              ) : user ? (
+                <UserMenu email={user.email ?? ""} />
+              ) : (
+                <Link
+                  href="/login"
+                  className="flex items-center gap-1.5 rounded-[6px] bg-accent px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-light transition-colors"
+                >
+                  <LogIn className="h-3.5 w-3.5" />
+                  ログイン
+                </Link>
+              )}
+            </div>
+
             {/* Mobile menu button */}
             <button
               type="button"
@@ -254,6 +275,25 @@ export default function Header() {
               );
             })}
           </nav>
+          {/* Mobile auth */}
+          <div className="px-4 py-4 border-t border-gray-100">
+            {authLoading ? null : user ? (
+              <div className="space-y-1">
+                <p className="px-4 py-2 text-xs text-gray-400 truncate">{user.email}</p>
+                <Link href="/dashboard" className="block px-4 py-3 text-base font-medium text-gray-700 rounded-[8px] hover:bg-gray-50">マイページ</Link>
+                <Link href="/watchlist" className="block px-4 py-3 text-base font-medium text-gray-700 rounded-[8px] hover:bg-gray-50">お気に入り</Link>
+                <Link href="/portfolio" className="block px-4 py-3 text-base font-medium text-gray-700 rounded-[8px] hover:bg-gray-50">ポートフォリオ</Link>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center justify-center gap-2 w-full rounded-lg bg-accent py-3 text-sm font-semibold text-white hover:bg-accent-light transition-colors"
+              >
+                <LogIn className="h-4 w-4" />
+                ログイン / 新規登録
+              </Link>
+            )}
+          </div>
           <div className="px-8 pt-4 border-t border-gray-100">
             <p className="text-xs text-gray-400">
               株式市場を、もっとシャープに。

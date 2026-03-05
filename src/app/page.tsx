@@ -13,6 +13,7 @@ import MacroSummary from "@/components/home/MacroSummary";
 import EarningsCalendarPreview from "@/components/home/EarningsCalendarPreview";
 import ColumnPreview from "@/components/home/ColumnPreview";
 import NewsletterCTA from "@/components/home/NewsletterCTA";
+import MemberCTA from "@/components/home/MemberCTA";
 
 export default function Home() {
   return (
@@ -88,6 +89,9 @@ export default function Home() {
 
       {/* Zone ⑨ Newsletter CTA */}
       <NewsletterCTA />
+
+      {/* Zone ⑩ Member CTA */}
+      <MemberCTA />
     </>
   );
 }
