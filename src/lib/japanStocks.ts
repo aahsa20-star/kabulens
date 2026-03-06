@@ -18,6 +18,7 @@ export type StockQuote = {
   change: number;
   changePercent: number;
   previousClose: number;
+  volume: number;
 };
 
 // --------------- in-memory cache ---------------
@@ -53,6 +54,7 @@ export async function getStockQuotes(
         change: (quote.regularMarketChange ?? 0) as number,
         changePercent: (quote.regularMarketChangePercent ?? 0) as number,
         previousClose: (quote.regularMarketPreviousClose ?? 0) as number,
+        volume: (quote.regularMarketVolume ?? 0) as number,
       };
     })
   );

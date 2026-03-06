@@ -18,9 +18,9 @@ export async function GET(req: NextRequest) {
     .map((c) => c.trim())
     .filter(Boolean);
 
-  if (codes.length === 0 || codes.length > 20) {
+  if (codes.length === 0 || codes.length > 50) {
     return NextResponse.json(
-      { error: "Provide 1-20 comma-separated stock codes" },
+      { error: "Provide 1-50 comma-separated stock codes" },
       { status: 400 }
     );
   }
