@@ -90,8 +90,9 @@ export default function Home() {
         </Link>
       </div>
 
-      {/* Newsletter CTA */}
+      {/* Newsletter CTA — PV増加後に復活予定
       <NewsletterCTA />
+      */}
     </>
   );
 }
