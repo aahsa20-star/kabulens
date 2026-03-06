@@ -7,6 +7,7 @@ import BottomNav from "@/components/layout/BottomNav";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import CookieConsent from "@/components/CookieConsent";
 import { AuthProvider } from "@/components/auth/AuthProvider";
+import Script from "next/script";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -77,16 +78,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9002303345373269"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body
         className={`${inter.variable} ${dmMono.variable} ${notoSansJP.variable} font-sans antialiased bg-offwhite text-navy`}
       >
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4781664015929713"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <AuthProvider>
           <GoogleAnalytics />
           <Header />
