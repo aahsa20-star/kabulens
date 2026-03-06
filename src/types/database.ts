@@ -5,6 +5,7 @@ export type Database = {
         Row: {
           id: string;
           title: string;
+          title_ja: string | null;
           summary: string | null;
           url: string;
           source: string | null;
@@ -17,6 +18,7 @@ export type Database = {
         Insert: {
           id?: string;
           title: string;
+          title_ja?: string | null;
           summary?: string | null;
           url: string;
           source?: string | null;
@@ -29,6 +31,7 @@ export type Database = {
         Update: {
           id?: string;
           title?: string;
+          title_ja?: string | null;
           summary?: string | null;
           url?: string;
           source?: string | null;

@@ -85,6 +85,7 @@ export default async function DashboardPage() {
   let recentNews: {
     id: string;
     title: string;
+    title_ja: string | null;
     source: string | null;
     published_at: string | null;
     url: string;
@@ -97,7 +98,7 @@ export default async function DashboardPage() {
       .join(",");
     const { data } = await serviceClient
       .from("news_articles")
-      .select("id, title, source, published_at, url")
+      .select("id, title, title_ja, source, published_at, url")
       .eq("is_validated", true)
       .or(orFilter)
       .order("published_at", { ascending: false })
@@ -194,7 +195,7 @@ export default async function DashboardPage() {
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <h3 className="text-sm font-bold text-navy line-clamp-2 mb-1">
-                      {article.title}
+                      {article.title_ja ?? article.title}
                     </h3>
                     <div className="flex items-center gap-3 text-[11px] text-gray-400">
                       {article.source && <span>出典：{article.source}</span>}

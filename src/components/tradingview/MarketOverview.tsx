@@ -49,7 +49,7 @@ export default function MarketOverview() {
         {
           title: "米国・グローバル",
           symbols: [
-            { s: "FRED:SP500", d: "S&P500" },
+            { s: "FOREXCOM:SPXUSD", d: "S&P500" },
             { s: "NASDAQ:NDX", d: "ナスダック100" },
             { s: "TVC:DXY", d: "ドル指数" },
             { s: "FX:USDJPY", d: "ドル円" },

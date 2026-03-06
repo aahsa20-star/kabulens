@@ -22,7 +22,14 @@ type NavItem = {
 
 const navLinks: NavItem[] = [
   { href: "/", label: "ホーム" },
-  { href: "/stocks/japan", label: "株式" },
+  {
+    href: "/stocks",
+    label: "株式",
+    children: [
+      { href: "/stocks/japan", label: "国内株式一覧" },
+      { href: "/themes", label: "テーマ株" },
+    ],
+  },
   {
     href: "/macro",
     label: "マーケット",
@@ -97,7 +104,8 @@ export default function Header() {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
-                  : pathname.startsWith(link.href);
+                  : pathname.startsWith(link.href) ||
+                    (link.children?.some((c) => pathname.startsWith(c.href)) ?? false);
 
               if (link.children) {
                 return (
@@ -217,7 +225,8 @@ export default function Header() {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
-                  : pathname.startsWith(link.href);
+                  : pathname.startsWith(link.href) ||
+                    (link.children?.some((c) => pathname.startsWith(c.href)) ?? false);
 
               if (link.children) {
                 return (

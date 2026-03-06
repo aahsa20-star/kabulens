@@ -16,7 +16,7 @@ export default function HotLists() {
     script.innerHTML = JSON.stringify({
       colorTheme: "light",
       dateRange: "12M",
-      exchange: "TSEJ",
+      exchange: "TSE",
       showChart: true,
       locale: "ja",
       largeChartUrl: "",

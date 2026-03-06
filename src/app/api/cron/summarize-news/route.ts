@@ -14,6 +14,7 @@ interface ClaudeResponse {
 }
 
 interface SummaryResult {
+  title_ja: string;
   summary: string;
   importance: number;
   category: string;
@@ -68,6 +69,7 @@ URL: ${url}
 
 以下のJSON形式で回答してください（JSONのみ、他のテキストは不要）:
 {
+  "title_ja": "タイトルの自然な日本語訳（英語タイトルの場合のみ翻訳。すでに日本語なら原文のまま）",
   "summary": "記事の要約（日本語、2-3文）",
   "importance": <1-5の整数、5が最も重要>,
   "category": "<以下のいずれか: 決算, 政策, 日本株, マクロ, 為替, 米株, その他>"
@@ -122,6 +124,7 @@ URL: ${url}
   const importance = Math.max(1, Math.min(5, Math.round(parsed.importance)));
 
   return {
+    title_ja: typeof parsed.title_ja === "string" ? parsed.title_ja : title,
     summary: parsed.summary,
     importance,
     category: parsed.category,
@@ -190,6 +193,7 @@ export async function GET(request: Request) {
         const { error: updateError } = await supabase
           .from("news_articles")
           .update({
+            title_ja: result.title_ja,
             summary: result.summary,
             importance: result.importance,
             category: result.category,

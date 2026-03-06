@@ -5,6 +5,7 @@ import { createServerClient } from "@/lib/supabase";
 type NewsItem = {
   id: string;
   title: string;
+  title_ja: string | null;
   summary: string | null;
   source: string | null;
   category: string | null;
@@ -37,7 +38,7 @@ async function fetchNews(): Promise<NewsItem[]> {
 
   const { data } = await supabase
     .from("news_articles")
-    .select("id, title, summary, source, category, published_at, url")
+    .select("id, title, title_ja, summary, source, category, published_at, url")
     .eq("is_validated", true)
     .not("summary", "is", null)
     .neq("category", "米株")
@@ -101,7 +102,7 @@ export default async function NewsSection() {
 
               {/* Title */}
               <h3 className="text-sm font-bold text-navy leading-snug mb-2 line-clamp-2">
-                {item.title}
+                {item.title_ja ?? item.title}
               </h3>
 
               {/* AI Summary */}
