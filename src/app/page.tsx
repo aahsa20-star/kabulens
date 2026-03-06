@@ -5,6 +5,7 @@ import {
   MarketOverview,
 } from "@/components/tradingview/ClientWidgets";
 import JapanStocksWidget from "@/components/market/JapanStocksWidget";
+import StockRankings from "@/components/market/StockRankings";
 import HeroSection from "@/components/home/HeroSection";
 import NewsSection from "@/components/home/NewsSection";
 import ThemePickup from "@/components/home/ThemePickup";
@@ -31,12 +32,22 @@ export default function Home() {
           <div className="lg:col-span-7">
             <NewsSection />
           </div>
-          <div className="lg:col-span-5">
-            <h2 className="mb-4 text-lg font-semibold text-navy">
-              主要銘柄
-            </h2>
-            <div className="overflow-hidden rounded-lg bg-white shadow-sm">
-              <JapanStocksWidget />
+          <div className="lg:col-span-5 space-y-6">
+            <div>
+              <h2 className="mb-4 text-lg font-semibold text-navy">
+                主要銘柄
+              </h2>
+              <div className="overflow-hidden rounded-lg bg-white shadow-sm">
+                <JapanStocksWidget />
+              </div>
+            </div>
+            <div>
+              <h2 className="mb-4 text-lg font-semibold text-navy">
+                注目銘柄ランキング
+              </h2>
+              <div className="overflow-hidden rounded-lg bg-white shadow-sm">
+                <StockRankings />
+              </div>
             </div>
           </div>
         </section>

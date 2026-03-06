@@ -14,10 +14,17 @@ import {
 import { useAuth } from "@/components/auth/AuthProvider";
 import UserMenu from "@/components/auth/UserMenu";
 
+type NavChild = {
+  href: string;
+  label: string;
+  separator?: boolean;
+  badge?: string;
+};
+
 type NavItem = {
   href: string;
   label: string;
-  children?: { href: string; label: string }[];
+  children?: NavChild[];
 };
 
 const navLinks: NavItem[] = [
@@ -37,7 +44,7 @@ const navLinks: NavItem[] = [
       { href: "/macro", label: "マーケット概況" },
       { href: "/macro/fed", label: "FRBウォッチャー" },
       { href: "/macro/boj", label: "日銀ウォッチャー" },
-      { href: "/glossary", label: "用語集" },
+      { href: "/glossary", label: "初心者向け用語集", separator: true, badge: "初心者" },
     ],
   },
   { href: "/trending", label: "トレンド" },
@@ -129,21 +136,30 @@ export default function Header() {
                       />
                     </button>
                     {openSubmenu === link.href && (
-                      <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50">
+                      <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50">
                         {link.children.map((child) => {
                           const childActive = pathname === child.href;
                           return (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              className={`block px-4 py-2 text-sm transition-colors ${
-                                childActive
-                                  ? "text-accent bg-accent/5 font-medium"
-                                  : "text-gray-600 hover:text-navy hover:bg-gray-50"
-                              }`}
-                            >
-                              {child.label}
-                            </Link>
+                            <div key={child.href}>
+                              {child.separator && (
+                                <div className="my-1 border-t border-gray-100" />
+                              )}
+                              <Link
+                                href={child.href}
+                                className={`flex items-center gap-2 px-4 py-2 text-sm transition-colors ${
+                                  childActive
+                                    ? "text-accent bg-accent/5 font-medium"
+                                    : "text-gray-600 hover:text-navy hover:bg-gray-50"
+                                }`}
+                              >
+                                {child.label}
+                                {child.badge && (
+                                  <span className="text-[10px] font-medium bg-accent/10 text-accent px-1.5 py-0.5 rounded-full">
+                                    {child.badge}
+                                  </span>
+                                )}
+                              </Link>
+                            </div>
                           );
                         })}
                       </div>
@@ -252,17 +268,26 @@ export default function Header() {
                     {openSubmenu === link.href && (
                       <div className="ml-4 mt-1 space-y-1">
                         {link.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className={`block px-4 py-2.5 text-sm rounded-[6px] transition-colors ${
-                              pathname === child.href
-                                ? "text-accent bg-accent/5 font-medium"
-                                : "text-gray-600 hover:bg-gray-50"
-                            }`}
-                          >
-                            {child.label}
-                          </Link>
+                          <div key={child.href}>
+                            {child.separator && (
+                              <div className="my-1 border-t border-gray-100 mx-4" />
+                            )}
+                            <Link
+                              href={child.href}
+                              className={`flex items-center gap-2 px-4 py-2.5 text-sm rounded-[6px] transition-colors ${
+                                pathname === child.href
+                                  ? "text-accent bg-accent/5 font-medium"
+                                  : "text-gray-600 hover:bg-gray-50"
+                              }`}
+                            >
+                              {child.label}
+                              {child.badge && (
+                                <span className="text-[10px] font-medium bg-accent/10 text-accent px-1.5 py-0.5 rounded-full">
+                                  {child.badge}
+                                </span>
+                              )}
+                            </Link>
+                          </div>
                         ))}
                       </div>
                     )}

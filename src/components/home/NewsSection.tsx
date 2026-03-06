@@ -57,7 +57,7 @@ export default async function NewsSection() {
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-accent" />
-          <h2 className="text-lg font-bold text-navy">AI要約ニュース</h2>
+          <h2 className="text-lg font-bold text-navy">今日のニュース</h2>
         </div>
         <Link
           href="/news"

@@ -12,7 +12,7 @@ export default function HeroSection() {
               株式市場を、もっとシャープに。
             </h1>
             <p className="mt-4 text-base lg:text-lg text-blue-300 leading-relaxed">
-              AI要約ニュース・テーマ株・決算速報を日本語でわかりやすく。
+              ニュース・テーマ株・決算速報を日本語でわかりやすく。
               <br className="hidden sm:block" />
               新NISA世代のための投資情報メディア。
             </p>
@@ -40,7 +40,7 @@ export default function HeroSection() {
               <Newspaper className="h-8 w-8 text-blue-300 shrink-0" />
               <div>
                 <p className="text-white font-semibold text-sm">毎日更新</p>
-                <p className="text-blue-300/80 text-xs">AIニュース要約</p>
+                <p className="text-blue-300/80 text-xs">厳選ニュース</p>
               </div>
             </div>
             <div className="flex items-center gap-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm px-5 py-4">
