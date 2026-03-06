@@ -3,8 +3,8 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import {
   TickerTape,
   MarketOverview,
-  HotLists,
 } from "@/components/tradingview/ClientWidgets";
+import JapanStocksWidget from "@/components/market/JapanStocksWidget";
 import HeroSection from "@/components/home/HeroSection";
 import NewsSection from "@/components/home/NewsSection";
 import ThemePickup from "@/components/home/ThemePickup";
@@ -33,10 +33,10 @@ export default function Home() {
           </div>
           <div className="lg:col-span-5">
             <h2 className="mb-4 text-lg font-semibold text-navy">
-              注目銘柄ランキング
+              主要銘柄
             </h2>
             <div className="overflow-hidden rounded-lg bg-white shadow-sm">
-              <HotLists />
+              <JapanStocksWidget />
             </div>
           </div>
         </section>
