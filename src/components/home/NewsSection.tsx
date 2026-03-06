@@ -115,15 +115,17 @@ export default async function NewsSection() {
                 <span className="text-[11px] text-gray-400">
                   出典：{item.source}
                 </span>
-                <Link
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-xs text-accent hover:text-accent-light transition-colors font-medium"
-                >
-                  元記事を読む
-                  <ExternalLink className="h-3 w-3" />
-                </Link>
+                {item.url && item.url !== "#" && (
+                  <Link
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs text-accent hover:text-accent-light transition-colors font-medium"
+                  >
+                    元記事を読む
+                    <ExternalLink className="h-3 w-3" />
+                  </Link>
+                )}
               </div>
             </article>
           ))}
