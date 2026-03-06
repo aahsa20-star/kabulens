@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { createServerClient } from "@/lib/supabase";
+import PushNotificationSection from "@/components/push/PushNotificationSection";
 
 export const metadata = {
   title: "マイページ",
@@ -157,6 +158,9 @@ export default async function DashboardPage() {
           </Link>
         ))}
       </section>
+
+      {/* Push notification toggle */}
+      <PushNotificationSection />
 
       {/* Watchlist news */}
       <section>

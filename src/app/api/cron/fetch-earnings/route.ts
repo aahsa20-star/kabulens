@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase";
+import { sendPushToAll } from "@/lib/web-push";
 
 /**
  * Fetch earnings announcements from TDnet (適時開示)
@@ -219,6 +220,20 @@ export async function GET(request: Request) {
       } catch {
         // TDnet may not have future dates, skip silently
         continue;
+      }
+    }
+
+    // Send push notification if new earnings were found
+    if (totalNew > 0) {
+      try {
+        await sendPushToAll(supabase, {
+          title: `【決算速報】本日${totalNew}件の決算発表`,
+          body: "最新の決算情報をKabu Lensでチェック",
+          url: "https://kabulens.jp/earnings",
+          tag: "earnings-daily",
+        });
+      } catch (e) {
+        errors.push(`Push notification: ${e instanceof Error ? e.message : "Unknown"}`);
       }
     }
 

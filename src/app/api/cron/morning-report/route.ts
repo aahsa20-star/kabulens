@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase";
+import { sendPushToAll } from "@/lib/web-push";
 
 export async function GET(request: Request) {
   // 1. Auth check: Bearer token must match CRON_SECRET
@@ -138,6 +139,20 @@ HTMLのbodyタグ内のコンテンツとして出力してください。見出
     } catch (e) {
       errors.push(`${sub.email}: ${e instanceof Error ? e.message : "Unknown error"}`);
     }
+  }
+
+  // Send push notification
+  try {
+    const newsCount = news?.length ?? 0;
+    const earningsCount = earnings?.length ?? 0;
+    await sendPushToAll(supabase, {
+      title: "📰 Kabu Lens 朝刊",
+      body: `本日の注目ニュース${newsCount}件・決算${earningsCount}件をまとめました`,
+      url: "https://kabulens.jp/news",
+      tag: "morning-report",
+    });
+  } catch {
+    // Push failure should not fail the entire cron
   }
 
   return NextResponse.json({

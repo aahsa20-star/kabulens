@@ -15,6 +15,7 @@ import {
   BarChart3,
   Loader2,
 } from "lucide-react";
+import PushNotificationToggle from "@/components/push/PushNotificationToggle";
 
 const newsletterTypes = [
   {
@@ -205,6 +206,21 @@ export default function NewsletterPage() {
                 </p>
               </>
             )}
+          </div>
+        </section>
+
+        {/* Push notification alternative */}
+        <section className="mb-10">
+          <div className="bg-white rounded-lg shadow-sm p-5 flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <h3 className="text-sm font-bold text-navy mb-1">
+                プッシュ通知でもお届けできます
+              </h3>
+              <p className="text-xs text-gray-500">
+                ブラウザ通知で決算速報・朝刊レポートをリアルタイムに受信
+              </p>
+            </div>
+            <PushNotificationToggle />
           </div>
         </section>
 
