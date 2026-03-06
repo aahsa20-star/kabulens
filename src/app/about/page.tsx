@@ -70,7 +70,7 @@ export default function AboutPage() {
               <tbody className="divide-y divide-gray-100">
                 {[
                   ["サイト名", "Kabu Lens（株レンズ）"],
-                  ["運営者", "Aki"],
+                  ["運営者", "Aki Nagayama"],
                   ["設立", "2026年"],
                   ["所在地", "茨城県"],
                   ["お問い合わせ", "akiissamurai@gmail.com"],
