@@ -1,6 +1,6 @@
 import { createServerClient } from "@/lib/supabase";
 import Link from "next/link";
-import { Calendar, Clock, Building2, Info } from "lucide-react";
+import { Calendar, Building2, Info } from "lucide-react";
 import EarningsFilter from "./EarningsFilter";
 
 // Revalidate every 5 minutes for fresh earnings data
@@ -114,14 +114,9 @@ export default async function EarningsPage() {
           </p>
         </div>
 
-        <div className="text-center py-16">
-          <Clock className="mx-auto mb-3 w-8 h-8 text-gray-300" />
-          <p className="text-sm text-gray-500">
-            決算データを取得中です。しばらくお待ちください。
-          </p>
-          <p className="text-xs text-gray-400 mt-1">
-            情報は毎営業日18:00（JST）に更新されます
-          </p>
+        <div className="text-center py-12 text-muted-foreground">
+          <p>現在、決算データを準備中です。</p>
+          <p className="text-sm mt-1">毎営業日18:00（JST）に更新されます。</p>
         </div>
 
         <div className="flex items-center gap-1.5 text-[10px] text-gray-400 mt-8">
