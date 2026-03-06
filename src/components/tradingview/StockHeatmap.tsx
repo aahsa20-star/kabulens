@@ -1,45 +1,22 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { BarChart3 } from "lucide-react";
 
 export default function StockHeatmap() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    containerRef.current.innerHTML = "";
-
-    const script = document.createElement("script");
-    script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js";
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      exchanges: [],
-      dataSource: "TOPIX",
-      grouping: "sector",
-      blockSize: "market_cap_basic",
-      blockColor: "change",
-      locale: "ja",
-      symbolUrl: "",
-      colorTheme: "light",
-      hasTopBar: true,
-      isDataSet498enabled: false,
-      isZoomEnabled: true,
-      hasSymbolTooltip: true,
-      isMonoSize: false,
-      width: "100%",
-      height: 500,
-      isTransparent: true,
-    });
-
-    containerRef.current.appendChild(script);
-  }, []);
-
   return (
     <div
-      ref={containerRef}
-      className="tradingview-widget-container"
+      className="flex flex-col items-center justify-center rounded-lg border border-gray-100 bg-white/50"
       style={{ height: 500 }}
-    />
+    >
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/10 mb-4">
+        <BarChart3 className="h-7 w-7 text-accent" />
+      </div>
+      <p className="text-base font-semibold text-navy mb-1">
+        マーケットヒートマップ
+      </p>
+      <p className="text-sm text-gray-500">
+        近日公開予定です
+      </p>
+    </div>
   );
 }

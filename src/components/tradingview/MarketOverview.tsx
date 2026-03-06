@@ -35,18 +35,6 @@ export default function MarketOverview() {
       symbolActiveColor: "rgba(41, 98, 255, 0.12)",
       tabs: [
         {
-          title: "日本株",
-          symbols: [
-            { s: "FXOPEN:JP225", d: "日経平均" },
-            { s: "PEPPERSTONE:TOPIX", d: "TOPIX" },
-            { s: "TSE:7203", d: "トヨタ" },
-            { s: "TSE:6758", d: "ソニーG" },
-            { s: "TSE:9984", d: "ソフトバンクG" },
-            { s: "TSE:8035", d: "東京エレクトロン" },
-          ],
-          originalTitle: "日本株",
-        },
-        {
           title: "米国・グローバル",
           symbols: [
             { s: "FOREXCOM:SPXUSD", d: "S&P500" },
