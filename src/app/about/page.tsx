@@ -73,7 +73,7 @@ export default function AboutPage() {
                   ["運営者", "Aki"],
                   ["設立", "2026年"],
                   ["所在地", "茨城県"],
-                  ["お問い合わせ", "contact@kabulens.jp"],
+                  ["お問い合わせ", "akiissamurai@gmail.com"],
                   ["運営目的", "日本株・マクロ経済情報の提供"],
                 ].map(([label, value]) => (
                   <tr key={label}>
