@@ -6,6 +6,7 @@ import {
   ShieldAlert,
   Mail,
   ArrowRight,
+  Building2,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -55,6 +56,46 @@ export default function AboutPage() {
                 <p className="text-xs text-gray-500 mt-1">リアルタイム更新</p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Operator Info */}
+        <section className="mb-10">
+          <div className="flex items-center gap-2 mb-4">
+            <Building2 className="h-5 w-5 text-accent" />
+            <h2 className="text-lg font-bold text-navy">運営者情報</h2>
+          </div>
+          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <table className="w-full text-sm">
+              <tbody className="divide-y divide-gray-100">
+                {[
+                  ["サイト名", "Kabu Lens（株レンズ）"],
+                  ["運営者", "Aki"],
+                  ["設立", "2026年"],
+                  ["所在地", "茨城県"],
+                  ["お問い合わせ", "contact@kabulens.jp"],
+                  ["運営目的", "日本株・マクロ経済情報の提供"],
+                ].map(([label, value]) => (
+                  <tr key={label}>
+                    <th className="px-6 py-3 text-left font-semibold text-navy bg-lightgray w-1/3">
+                      {label}
+                    </th>
+                    <td className="px-6 py-3 text-navy">
+                      {label === "お問い合わせ" ? (
+                        <a
+                          href={`mailto:${value}`}
+                          className="text-accent hover:text-accent-light transition-colors"
+                        >
+                          {value}
+                        </a>
+                      ) : (
+                        value
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </section>
 
