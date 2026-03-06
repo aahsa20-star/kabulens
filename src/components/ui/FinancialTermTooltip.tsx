@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { financialTerms } from "@/lib/financial-terms";
+import { financialTerms } from "@/lib/glossary-terms";
 
 interface Props {
   term: string;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import {
   TickerTape,
   MarketOverview,
@@ -65,6 +65,18 @@ export default function Home() {
         <section className="pb-8">
           <EarningsCalendarPreview />
         </section>
+      </div>
+
+      {/* Glossary banner */}
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pb-8">
+        <Link
+          href="/glossary"
+          className="flex items-center justify-center gap-2 rounded-lg bg-white border border-gray-200 hover:border-accent py-3 px-4 text-sm text-gray-600 hover:text-accent transition-colors"
+        >
+          <BookOpen className="h-4 w-4" />
+          投資用語がわからない？用語集で調べる
+          <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
 
       {/* Newsletter CTA */}

@@ -37,6 +37,7 @@ const navLinks: NavItem[] = [
       { href: "/macro", label: "マーケット概況" },
       { href: "/macro/fed", label: "FRBウォッチャー" },
       { href: "/macro/boj", label: "日銀ウォッチャー" },
+      { href: "/glossary", label: "用語集" },
     ],
   },
   { href: "/trending", label: "トレンド" },
