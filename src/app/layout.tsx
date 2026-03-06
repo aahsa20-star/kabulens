@@ -77,6 +77,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9002303345373269"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={`${inter.variable} ${dmMono.variable} ${notoSansJP.variable} font-sans antialiased bg-offwhite text-navy`}
       >
