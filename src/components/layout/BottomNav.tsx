@@ -6,7 +6,7 @@ import { Home, TrendingUp, Globe, Flame, Newspaper, BarChart3 } from "lucide-rea
 
 const tabs = [
   { href: "/", label: "ホーム", icon: Home },
-  { href: "/stocks", label: "株式", icon: TrendingUp },
+  { href: "/stocks/japan", label: "株式", icon: TrendingUp },
   { href: "/trending", label: "トレンド", icon: Flame },
   { href: "/macro", label: "マーケット", icon: Globe },
   { href: "/news", label: "ニュース", icon: Newspaper },

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ScanLine, Twitter, Youtube, MessageCircle } from "lucide-react";
 
 const serviceLinks = [
-  { href: "/stocks", label: "株式" },
+  { href: "/stocks/japan", label: "株式" },
   { href: "/macro", label: "マーケット" },
   { href: "/news", label: "ニュース" },
   { href: "/columns", label: "コラム" },
