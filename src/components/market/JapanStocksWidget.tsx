@@ -9,11 +9,10 @@ const CODES = "7203,6758,9984,8035,6861,9983";
 type Quote = {
   code: string;
   name: string;
-  date: string;
-  close: number;
-  previousClose: number;
+  price: number;
   change: number;
   changePercent: number;
+  previousClose: number;
 };
 
 export default function JapanStocksWidget() {
@@ -58,17 +57,13 @@ export default function JapanStocksWidget() {
     );
   }
 
-  const dataDate = quotes[0]?.date;
-
   return (
     <div>
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
-        <span className="text-xs text-gray-400">
-          前日終値（{dataDate}）
-        </span>
+        <span className="text-xs text-gray-400">株価情報</span>
         <span className="text-[10px] text-gray-400 bg-gray-50 px-2 py-0.5 rounded">
-          J-Quants
+          Yahoo Finance
         </span>
       </div>
 
@@ -97,7 +92,7 @@ export default function JapanStocksWidget() {
                 </div>
                 <div className="text-right flex-shrink-0 ml-4">
                   <p className="text-sm font-semibold text-navy tabular-nums">
-                    {q.close.toLocaleString("ja-JP", {
+                    {q.price.toLocaleString("ja-JP", {
                       minimumFractionDigits: 1,
                       maximumFractionDigits: 1,
                     })}

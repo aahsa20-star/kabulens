@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDailyQuotes } from "@/lib/jquants";
+import { getStockQuotes } from "@/lib/japanStocks";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const quotes = await getDailyQuotes(codes);
+    const quotes = await getStockQuotes(codes);
     return NextResponse.json({ quotes });
   } catch (err) {
     console.error("[/api/stocks/quotes]", err);
