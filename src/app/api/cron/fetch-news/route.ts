@@ -11,22 +11,41 @@ interface RSSSource {
 const RSS_SOURCES: RSSSource[] = [
   // 日本語・日本市場（最優先）
   {
+    url: "https://www.nikkei.com/news/rss/?channel=market",
+    source: "日本経済新聞",
+    lang: "ja",
+    priority: 1,
+  },
+  {
     url: "https://www.jpx.co.jp/news/1020/index.xml",
     source: "JPX",
     lang: "ja",
     priority: 1,
   },
   {
-    url: "https://www.boj.or.jp/rss/news.xml",
+    url: "https://www.boj.or.jp/rss/boj_all.xml",
     source: "日本銀行",
     lang: "ja",
     priority: 1,
   },
   {
     url: "https://feeds.reuters.com/reuters/JPBusinessNews",
-    source: "ロイター日本語",
+    source: "ロイター",
     lang: "ja",
     priority: 1,
+  },
+  {
+    url: "https://www.bloomberg.co.jp/feeds/podcast/markets.xml",
+    source: "Bloomberg",
+    lang: "ja",
+    priority: 1,
+  },
+  // 省庁・機関
+  {
+    url: "https://www.mof.go.jp/rss/index.rss",
+    source: "財務省",
+    lang: "ja",
+    priority: 2,
   },
   {
     url: "https://www.dir.co.jp/rss/report.rdf",

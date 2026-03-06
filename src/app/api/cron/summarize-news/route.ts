@@ -150,6 +150,15 @@ export async function GET(request: Request) {
       .order("published_at", { ascending: false })
       .limit(10);
 
+    // Also backfill validated articles missing title_ja (up to 5)
+    const { data: missingTitleJa } = await supabase
+      .from("news_articles")
+      .select("id, title, url")
+      .eq("is_validated", true)
+      .is("title_ja", null)
+      .order("published_at", { ascending: false })
+      .limit(5);
+
     if (fetchError) {
       return NextResponse.json(
         { success: false, error: fetchError.message },
@@ -218,10 +227,30 @@ export async function GET(request: Request) {
       }
     }
 
+    // Backfill title_ja for already-validated articles
+    let backfilledCount = 0;
+    if (missingTitleJa && missingTitleJa.length > 0) {
+      for (const article of missingTitleJa) {
+        try {
+          const result = await summarizeArticle(article.title, article.url);
+          if (result?.title_ja && result.title_ja !== article.title) {
+            await supabase
+              .from("news_articles")
+              .update({ title_ja: result.title_ja })
+              .eq("id", article.id);
+            backfilledCount++;
+          }
+        } catch {
+          // Skip backfill failures silently
+        }
+      }
+    }
+
     return NextResponse.json({
       success: true,
       processed: processedCount,
       total: articles.length,
+      backfilled_title_ja: backfilledCount,
       errors: errors.length > 0 ? errors : undefined,
     });
   } catch (error) {
