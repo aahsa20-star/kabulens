@@ -16,7 +16,7 @@ const supportLinks = [
 
 const socialLinks = [
   { href: "https://x.com/kabulens", label: "X (Twitter)", icon: Twitter },
-  { href: "https://www.youtube.com/@kabulens", label: "YouTube", icon: Youtube },
+  { href: "https://youtube.com/@kabulensjp", label: "YouTube", icon: Youtube },
 ];
 
 export default function Footer() {

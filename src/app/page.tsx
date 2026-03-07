@@ -97,7 +97,7 @@ export default function Home() {
             </div>
             <div className="mt-3 text-center">
               <a
-                href="https://www.youtube.com/@kabulens"
+                href="https://youtube.com/@kabulensjp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-accent transition-colors"

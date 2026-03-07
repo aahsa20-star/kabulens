@@ -74,7 +74,7 @@ export const articlesMap: Record<string, ArticleData> = {
 
 https://www.youtube.com/embed/buKuBhoPP4A
 
-[株レンズ チャンネルを見る →](https://www.youtube.com/@kabulens)`,
+[株レンズ チャンネルを見る →](https://youtube.com/@kabulensjp)`,
     tickers: [],
     relatedSlugs: [
       "nisa-growth-portfolio-2026",
