@@ -90,6 +90,7 @@ export default function Home() {
                 className="absolute inset-0 h-full w-full"
                 src="https://www.youtube.com/embed/buKuBhoPP4A"
                 title="Kabu Lens 最新動画"
+                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />

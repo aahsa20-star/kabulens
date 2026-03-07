@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { ScanLine, Twitter, Youtube, MessageCircle } from "lucide-react";
+import { ScanLine, Twitter, Youtube } from "lucide-react";
 
 const serviceLinks = [
   { href: "/stocks/japan", label: "株式" },
   { href: "/macro", label: "マーケット" },
   { href: "/news", label: "ニュース" },
-  { href: "/columns", label: "コラム" },
+  { href: "/column", label: "コラム" },
 ];
 
 const supportLinks = [
@@ -15,9 +15,8 @@ const supportLinks = [
 ];
 
 const socialLinks = [
-  { href: "https://x.com", label: "X (Twitter)", icon: Twitter },
-  { href: "https://youtube.com", label: "YouTube", icon: Youtube },
-  { href: "https://discord.com", label: "Discord", icon: MessageCircle },
+  { href: "https://x.com/kabulens", label: "X (Twitter)", icon: Twitter },
+  { href: "https://www.youtube.com/@kabulens", label: "YouTube", icon: Youtube },
 ];
 
 export default function Footer() {
