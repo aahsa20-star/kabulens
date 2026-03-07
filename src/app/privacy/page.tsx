@@ -85,7 +85,7 @@ const sections = [
     title: "12. お問い合わせ",
     paragraphs: [
       "本プライバシーポリシーに関するお問い合わせは、以下までご連絡ください。",
-      "Kabu Lens 運営事務局\nメール：contact@kabulens.jp",
+      "Kabu Lens 運営事務局\nメール：akiissamurai@gmail.com",
     ],
   },
 ];

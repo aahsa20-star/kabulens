@@ -198,11 +198,11 @@ export default function ContactPage() {
               フォームをご利用いただけない場合は、以下のメールアドレスまで直接ご連絡ください。
             </p>
             <a
-              href="mailto:contact@kabulens.jp"
+              href="mailto:akiissamurai@gmail.com"
               className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-light transition-colors"
             >
               <Mail className="h-4 w-4" />
-              contact@kabulens.jp
+              akiissamurai@gmail.com
             </a>
           </div>
         </section>
