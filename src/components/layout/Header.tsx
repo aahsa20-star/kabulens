@@ -199,7 +199,7 @@ export default function Header() {
               </kbd>
             </button>
 
-            {/* Auth */}
+            {/* Auth — PV増加後に復活予定
             <div className="hidden md:block">
               {authLoading ? (
                 <div className="h-8 w-8 rounded-full bg-gray-200 animate-pulse" />
@@ -215,6 +215,7 @@ export default function Header() {
                 </Link>
               )}
             </div>
+            */}
 
             {/* Mobile menu button */}
             <button
@@ -310,7 +311,7 @@ export default function Header() {
               );
             })}
           </nav>
-          {/* Mobile auth */}
+          {/* Mobile auth — PV増加後に復活予定
           <div className="px-4 py-4 border-t border-gray-100">
             {authLoading ? null : user ? (
               <div className="space-y-1">
@@ -329,6 +330,7 @@ export default function Header() {
               </Link>
             )}
           </div>
+          */}
           <div className="px-8 pt-4 border-t border-gray-100">
             <p className="text-xs text-gray-400">
               株式市場を、もっとシャープに。
