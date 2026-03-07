@@ -50,6 +50,7 @@ export default function HeroSection() {
                 <p className="text-blue-300/80 text-xs">テーマ株カバー</p>
               </div>
             </div>
+            {/* 無料登録バッジ — PV増加後に復活予定
             <div className="flex items-center gap-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm px-5 py-4">
               <Bell className="h-8 w-8 text-blue-300 shrink-0" />
               <div>
@@ -57,6 +58,7 @@ export default function HeroSection() {
                 <p className="text-blue-300/80 text-xs">プッシュ通知対応</p>
               </div>
             </div>
+            */}
           </div>
         </div>
       </div>
