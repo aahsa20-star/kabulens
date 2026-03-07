@@ -27,6 +27,67 @@ type ArticleData = {
 };
 
 const articlesMap: Record<string, ArticleData> = {
+  "what-is-new-nisa": {
+    slug: "what-is-new-nisa",
+    title: "新NISAとは？始める前に知っておくべき「時間軸の罠」",
+    date: "2026/03/07",
+    readTime: "6分",
+    category: "初心者向け",
+    gradientFrom: "from-sky-500",
+    gradientTo: "to-blue-600",
+    body: `## 新NISAとは何か、3行で
+
+難しく考えなくていい。要点はこの3つだけだ。
+
+* 年間360万円まで株や投資信託を買える
+* そこで出た利益に、税金がかからない
+* 非課税で持てる上限は生涯1,800万円
+
+通常、株で利益が出ると約20%の税金がかかる。10万円儲けたら2万円持っていかれる。新NISAではそれがゼロになる。シンプルだが、これが本当に大きい。
+
+## 2つの枠の違い
+
+新NISAには「つみたて投資枠」と「成長投資枠」の2種類がある。
+
+つみたて投資枠は年間120万円まで。長期・積立向けの投資信託だけが対象で、毎月コツコツ積み立てたい人向けだ。
+
+成長投資枠は年間240万円まで。個別株やETFも買える。自分で銘柄を選びたい人はこちらを使う。
+
+両方合わせて年間360万円、生涯1,800万円が上限。旧NISAと決定的に違うのは「期限がない」こと。ずっと使い続けられる制度になった。
+
+## 「非課税 ＝ 損しない」は大きな誤解
+
+ここを勘違いしている人が多い。
+
+非課税とは「利益に税金がかからない」ということであって、「損しない」ということではない。新NISA口座でも株価が下がれば損をする。そして一度売ってしまうと、使った枠は翌年まで戻ってこない。
+
+焦って売ることで、せっかくの非課税枠を無駄にしてしまう人が後を絶たない。
+
+## 失敗する人の共通点は「時間軸の間違い」
+
+投資で失敗する人を見ていると、パターンがほぼ同じだ。
+
+株価が少し下がっただけで売る。SNSで話題の銘柄をNISA枠で買って、下がって、嫌になる。「やっぱり投資は怖い」と辞める。
+
+これらの失敗に共通しているのは、時間軸が短すぎることだ。
+
+新NISAは長期投資のための制度だ。1年や2年で結果を判断しようとすると、ほぼ必ず失敗する。10年・20年のスパンで見ると、歴史的にはほとんどの資産が右肩上がりになっている。でも短期で見ると、半値になることも普通にある。
+
+「下がったから失敗した」ではなく、「まだ途中」と思えるかどうか。それだけの違いが、最終的な結果を大きく変える。
+
+## まとめ
+
+* 新NISAは利益非課税の制度。使わないのはもったいない
+* 「つみたて投資枠」と「成長投資枠」の2種類がある
+* 非課税でも損はする。焦って売らないことが大事
+* 失敗の原因はほぼ全部「時間軸の間違い」
+* 長期で持ち続けることが、唯一の正解に近い`,
+    tickers: [],
+    relatedSlugs: [
+      "nisa-growth-portfolio-2026",
+      "boj-rate-hike-analysis",
+    ],
+  },
   "boj-rate-hike-analysis": {
     slug: "boj-rate-hike-analysis",
     title: "日銀利上げ後の株式市場はどう動く？過去の利上げ局面を徹底分析",
@@ -334,6 +395,7 @@ Q3決算では、個別企業の業績だけでなく、通期業績予想の修
 
 // Helper: get article title by slug for related articles
 const articleTitles: Record<string, { title: string; date: string; category: string; gradientFrom: string; gradientTo: string }> = {
+  "what-is-new-nisa": { title: "新NISAとは？始める前に知っておくべき「時間軸の罠」", date: "2026/03/07", category: "初心者向け", gradientFrom: "from-sky-500", gradientTo: "to-blue-600" },
   "boj-rate-hike-analysis": { title: "日銀利上げ後の株式市場はどう動く？過去の利上げ局面を徹底分析", date: "2026/03/04", category: "マクロ分析", gradientFrom: "from-blue-600", gradientTo: "to-indigo-700" },
   "semiconductor-stocks-after-nvidia": { title: "半導体セクターの行方：NVIDIA決算後に注目すべき日本株5銘柄", date: "2026/03/03", category: "セクター分析", gradientFrom: "from-emerald-600", gradientTo: "to-teal-700" },
   "yen-strengthening-scenario": { title: "円高トレンド転換？ドル円150円割れのシナリオと投資戦略", date: "2026/03/02", category: "為替・戦略", gradientFrom: "from-amber-600", gradientTo: "to-orange-700" },
@@ -362,6 +424,39 @@ function renderMarkdownBody(body: string) {
         <h3 key={key++} className="text-lg font-bold text-navy mt-8 mb-3 pb-2 border-b border-gray-100">
           {trimmed.slice(3)}
         </h3>
+      );
+    } else if (trimmed.startsWith("* ") || trimmed.startsWith("- ")) {
+      // Collect consecutive list items
+      const items: string[] = [trimmed.slice(2)];
+      const startIdx = lines.indexOf(line);
+      let nextIdx = startIdx + 1;
+      while (nextIdx < lines.length) {
+        const nextLine = lines[nextIdx].trim();
+        if (nextLine.startsWith("* ") || nextLine.startsWith("- ")) {
+          items.push(nextLine.slice(2));
+          lines[nextIdx] = ""; // mark as consumed
+          nextIdx++;
+        } else {
+          break;
+        }
+      }
+      elements.push(
+        <ul key={key++} className="list-disc list-inside space-y-1.5 my-3 pl-1">
+          {items.map((item, i) => {
+            const parts = item.split(/(\*\*.*?\*\*)/);
+            const inlineElements = parts.map((part, j) => {
+              if (part.startsWith("**") && part.endsWith("**")) {
+                return <strong key={j} className="font-bold text-navy">{part.slice(2, -2)}</strong>;
+              }
+              return <span key={j}>{part}</span>;
+            });
+            return (
+              <li key={i} className="text-sm text-gray-700 leading-relaxed">
+                {inlineElements}
+              </li>
+            );
+          })}
+        </ul>
       );
     } else if (trimmed.startsWith("**") && trimmed.endsWith("**")) {
       elements.push(

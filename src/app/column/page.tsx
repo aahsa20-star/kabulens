@@ -21,6 +21,17 @@ type ColumnArticle = {
 
 const columns: ColumnArticle[] = [
   {
+    slug: "what-is-new-nisa",
+    title: "新NISAとは？始める前に知っておくべき「時間軸の罠」",
+    excerpt:
+      "2024年から新しくなったNISA制度。「非課税だからとりあえず始めよう」と口座を開いた人も多いはずだ。ただ、新NISAで失敗する人のほとんどは、制度の使い方ではなく「時間軸」を間違えている。",
+    date: "2026/03/07",
+    readTime: "6分",
+    category: "初心者向け",
+    gradientFrom: "from-sky-500",
+    gradientTo: "to-blue-600",
+  },
+  {
     slug: "boj-rate-hike-analysis",
     title: "日銀利上げ後の株式市場はどう動く？過去の利上げ局面を徹底分析",
     excerpt:
