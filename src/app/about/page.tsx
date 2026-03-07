@@ -176,11 +176,11 @@ export default function AboutPage() {
               サービスに関するお問い合わせ、フィードバック、メディア掲載に関するご連絡は以下のメールアドレスまでお願いいたします。
             </p>
             <a
-              href="mailto:contact@kabulens.jp"
+              href="mailto:akiissamurai@gmail.com"
               className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-light transition-colors"
             >
               <Mail className="h-4 w-4" />
-              contact@kabulens.jp
+              akiissamurai@gmail.com
             </a>
           </div>
         </section>

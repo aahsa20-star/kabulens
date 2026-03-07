@@ -100,7 +100,7 @@ async function sendEmail(name: string, email: string, subject: string, message: 
     },
     body: JSON.stringify({
       from: "Kabu Lens <noreply@kabulens.jp>",
-      to: "contact@kabulens.jp",
+      to: "akiissamurai@gmail.com",
       subject: `[お問い合わせ] ${subject} - ${name}様`,
       html,
     }),
