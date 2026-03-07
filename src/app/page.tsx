@@ -78,6 +78,37 @@ export default function Home() {
         </section>
       </div>
 
+      {/* Latest YouTube video */}
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="flex flex-col items-center">
+          <h2 className="text-sm font-medium text-gray-500 mb-4">
+            最新動画
+          </h2>
+          <div className="w-full max-w-[600px]">
+            <div className="relative w-full overflow-hidden rounded-lg shadow-sm" style={{ paddingBottom: "56.25%" }}>
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/buKuBhoPP4A"
+                title="Kabu Lens 最新動画"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <div className="mt-3 text-center">
+              <a
+                href="https://www.youtube.com/@kabulens"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-accent transition-colors"
+              >
+                チャンネルを見る
+                <ArrowRight className="h-3 w-3" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Glossary banner */}
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pb-8">
         <Link
