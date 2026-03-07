@@ -81,7 +81,15 @@ const articlesMap: Record<string, ArticleData> = {
 * 「つみたて投資枠」と「成長投資枠」の2種類がある
 * 非課税でも損はする。焦って売らないことが大事
 * 失敗の原因はほぼ全部「時間軸の間違い」
-* 長期で持ち続けることが、唯一の正解に近い`,
+* 長期で持ち続けることが、唯一の正解に近い
+
+## 動画で見る
+
+この記事の内容を動画でも解説しています。
+
+https://www.youtube.com/embed/buKuBhoPP4A
+
+[株レンズ チャンネルを見る →](https://www.youtube.com/@kabulens)`,
     tickers: [],
     relatedSlugs: [
       "nisa-growth-portfolio-2026",
@@ -458,6 +466,38 @@ function renderMarkdownBody(body: string) {
           })}
         </ul>
       );
+    } else if (/^https:\/\/www\.youtube\.com\/embed\/[\w-]+$/.test(trimmed)) {
+      // YouTube embed URL → responsive iframe
+      elements.push(
+        <div key={key++} className="my-4 w-full">
+          <div className="relative w-full overflow-hidden rounded-lg shadow-sm" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              className="absolute inset-0 h-full w-full"
+              src={trimmed}
+              title="YouTube動画"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      );
+    } else if (/^\[.+\]\(https?:\/\/.+\)$/.test(trimmed)) {
+      // Standalone markdown link line → render as link
+      const match = trimmed.match(/^\[(.+)\]\((https?:\/\/.+)\)$/);
+      if (match) {
+        elements.push(
+          <p key={key++} className="text-sm">
+            <a
+              href={match[2]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-accent transition-colors"
+            >
+              {match[1]}
+            </a>
+          </p>
+        );
+      }
     } else if (trimmed.startsWith("**") && trimmed.endsWith("**")) {
       elements.push(
         <p key={key++} className="text-sm font-bold text-navy mt-3 mb-1">
