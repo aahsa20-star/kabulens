@@ -47,6 +47,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+function renderInline(text: string): React.ReactNode[] {
+  // Split by bold and markdown links
+  const tokens = text.split(/(\*\*.*?\*\*|\[.*?\]\(https?:\/\/.*?\))/);
+  return tokens.map((token, i) => {
+    if (token.startsWith("**") && token.endsWith("**")) {
+      return <strong key={i} className="font-bold text-navy">{token.slice(2, -2)}</strong>;
+    }
+    const linkMatch = token.match(/^\[(.+?)\]\((https?:\/\/.+?)\)$/);
+    if (linkMatch) {
+      const isInternal = linkMatch[2].includes("kabulens.jp");
+      return (
+        <a
+          key={i}
+          href={linkMatch[2]}
+          {...(isInternal ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+          className="text-accent hover:underline"
+        >
+          {linkMatch[1]}
+        </a>
+      );
+    }
+    return <span key={i}>{token}</span>;
+  });
+}
+
 function renderMarkdownBody(body: string) {
   const lines = body.split("\n");
   const elements: React.ReactNode[] = [];
@@ -84,20 +109,11 @@ function renderMarkdownBody(body: string) {
       }
       elements.push(
         <ul key={key++} className="list-disc list-inside space-y-1.5 my-3 pl-1">
-          {items.map((item, i) => {
-            const parts = item.split(/(\*\*.*?\*\*)/);
-            const inlineElements = parts.map((part, j) => {
-              if (part.startsWith("**") && part.endsWith("**")) {
-                return <strong key={j} className="font-bold text-navy">{part.slice(2, -2)}</strong>;
-              }
-              return <span key={j}>{part}</span>;
-            });
-            return (
-              <li key={i} className="text-sm text-gray-700 leading-relaxed">
-                {inlineElements}
-              </li>
-            );
-          })}
+          {items.map((item, i) => (
+            <li key={i} className="text-sm text-gray-700 leading-relaxed">
+              {renderInline(item)}
+            </li>
+          ))}
         </ul>
       );
     } else if (/^https:\/\/www\.youtube\.com\/embed\/[\w-]+$/.test(trimmed)) {
@@ -138,16 +154,9 @@ function renderMarkdownBody(body: string) {
         </p>
       );
     } else {
-      const parts = trimmed.split(/(\*\*.*?\*\*)/);
-      const inlineElements = parts.map((part, i) => {
-        if (part.startsWith("**") && part.endsWith("**")) {
-          return <strong key={i} className="font-bold text-navy">{part.slice(2, -2)}</strong>;
-        }
-        return <span key={i}>{part}</span>;
-      });
       elements.push(
         <p key={key++} className="text-sm text-gray-700 leading-relaxed">
-          {inlineElements}
+          {renderInline(trimmed)}
         </p>
       );
     }
