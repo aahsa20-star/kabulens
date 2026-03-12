@@ -111,7 +111,7 @@ export default function Home() {
       </div>
 
       {/* Glossary banner */}
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pb-8">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pb-4">
         <Link
           href="/glossary"
           className="flex items-center justify-center gap-2 rounded-lg bg-white border border-gray-200 hover:border-accent py-3 px-4 text-sm text-gray-600 hover:text-accent transition-colors"
@@ -120,6 +120,16 @@ export default function Home() {
           投資用語がわからない？用語集で調べる
           <ArrowRight className="h-4 w-4" />
         </Link>
+      </div>
+
+      {/* Affiliate: 松井証券 iDeCo */}
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="flex items-center justify-center gap-2 text-xs text-gray-400">
+          <span>※広告</span>
+          <a href="https://px.a8.net/svt/ejp?a8mat=4AZAW2+AWCOFM+3XCC+BXIYQ" rel="nofollow" className="hover:text-accent transition-colors">松井証券ではじめるiDeCo</a>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4AZAW2+AWCOFM+3XCC+BXIYQ" alt="" />
+        </div>
       </div>
 
       {/* Newsletter CTA — PV増加後に復活予定

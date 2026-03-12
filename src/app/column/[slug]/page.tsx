@@ -243,6 +243,19 @@ export default async function ColumnDetailPage({ params }: PageProps) {
           {/* Share buttons (client component) */}
           <ShareButtons title={article.title} />
 
+          {/* Affiliate: 松井証券 iDeCo バナー */}
+          <div className="flex flex-col items-center mb-6">
+            <div className="rounded-lg overflow-hidden">
+              <a href="https://px.a8.net/svt/ejp?a8mat=4AZAW2+AWCOFM+3XCC+BYT9D" rel="nofollow">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img width="300" height="250" alt="" src="https://www29.a8.net/svt/bgt?aid=260307938659&wid=001&eno=01&mid=s00000018318002010000&mc=1" />
+              </a>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=4AZAW2+AWCOFM+3XCC+BYT9D" alt="" />
+            </div>
+            <p className="text-[10px] text-gray-400 mt-1">※広告</p>
+          </div>
+
           {/* Related columns */}
           <div className="mb-6">
             <h3 className="text-lg font-bold text-navy mb-4 flex items-center gap-2">

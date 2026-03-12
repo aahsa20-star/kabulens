@@ -147,6 +147,20 @@ export default async function GlossaryTermPage({
         </section>
       )}
 
+      {/* Affiliate: 松井証券 iDeCo */}
+      <div className="bg-gray-50 rounded-lg p-5 mb-8">
+        <h3 className="text-sm font-bold text-navy mb-2">iDeCoで資産運用を始めたい方へ</h3>
+        <p className="text-xs text-gray-600 leading-relaxed mb-3">
+          iDeCo（個人型確定拠出年金）は、掛金が全額所得控除になるなど税制面で大きなメリットがあります。将来の資産形成の第一歩として検討してみてください。
+        </p>
+        <p className="text-sm">
+          <a href="https://px.a8.net/svt/ejp?a8mat=4AZAW2+AWCOFM+3XCC+BXIYQ" rel="nofollow" className="text-accent hover:underline font-medium">松井証券ではじめるiDeCo</a>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4AZAW2+AWCOFM+3XCC+BXIYQ" alt="" />
+        </p>
+        <p className="text-[10px] text-gray-400 mt-2">※広告</p>
+      </div>
+
       {/* Back link */}
       <Link
         href="/glossary"
