@@ -21,6 +21,17 @@ type ColumnArticle = {
 
 const columns: ColumnArticle[] = [
   {
+    slug: "per-explained",
+    title: "PERとは？割安株の正しい見つけ方と、初心者がハマる罠",
+    excerpt:
+      "「PERが低いから割安！」と思って買ったのに、その後ぜんぜん上がらなかった。実はPERには、知らないと損する「罠」がある。PERの基本から正しい使い方まで、まとめて解説する。",
+    date: "2026/03/07",
+    readTime: "7分",
+    category: "初心者向け",
+    gradientFrom: "from-orange-500",
+    gradientTo: "to-red-600",
+  },
+  {
     slug: "what-is-new-nisa",
     title: "新NISAとは？始める前に知っておくべき「時間軸の罠」",
     excerpt:
