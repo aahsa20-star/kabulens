@@ -21,6 +21,17 @@ type ColumnArticle = {
 
 const columns: ColumnArticle[] = [
   {
+    slug: "pbr-explained",
+    title: "PBRとは？「1倍割れ＝割安」の正しい見つけ方と、初心者がハマる罠",
+    excerpt:
+      "「PBR1倍割れだから割安！」と思って買ったのに、その後ずっと上がらなかった。実はPBRにも、知らないと損する「罠」がある。PBRの基本から正しい使い方まで、まとめて解説する。",
+    date: "2026/03/13",
+    readTime: "7分",
+    category: "初心者向け",
+    gradientFrom: "from-green-500",
+    gradientTo: "to-emerald-600",
+  },
+  {
     slug: "per-explained",
     title: "PERとは？割安株の正しい見つけ方と、初心者がハマる罠",
     excerpt:
